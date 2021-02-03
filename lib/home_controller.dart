@@ -7,13 +7,16 @@ class HomeController extends GetxController{
 
   final SmsReceiver receiver = SmsReceiver();
 
+  String phone;
   String message;
 
   @override
   void onInit() {
-    receiver.onSmsReceived.listen((SmsMessage message) async{
+    receiver.onSmsReceived.listen((SmsMessage smsMessage) async{
         ///Pega apenas o número da String
-        this.message = message.body.replaceAll(new RegExp(r'[^0-9]'),'');
+        this.message = smsMessage.body.replaceAll(new RegExp(r'[^0-9]'),'');
+
+        this.phone = smsMessage.address;
 
         await sendToAPI();
 
@@ -24,15 +27,15 @@ class HomeController extends GetxController{
   }
 
   Future<void> sendToAPI() async{
-    const String url = "https://sms-handler-api.herokuapp.com/sms";
+    const String url = "http://sms-handler-com.umbler.net/sms";
 
 
-    final http.Response response = await http.post(url, body:jsonEncode({"sms":message}),encoding: Encoding.getByName("utf-8"), headers: {
+    final http.Response response = await http.post(url, body:jsonEncode({"content":message, "phone": phone, "date": DateTime.now().toString()}),encoding: Encoding.getByName("utf-8"), headers: {
     "Accept": "application/json",
     "Content-Type": "application/json"
     });
 
-    message += "\n\nResposta do Servidor:\n${response.body}";
+    message += "\n\nResposta do Servidor:\n\n${response.body}";
   }
 
 }

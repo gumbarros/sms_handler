@@ -5,7 +5,7 @@ import 'package:sms_handler/home.dart';
 void main(){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Home(),
+    home: HomeView(),
     theme: ThemeData(brightness: Brightness.dark),
   ));
 }

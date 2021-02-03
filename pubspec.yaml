@@ -1,5 +1,6 @@
 name: sms_handler
-description: A new Flutter application.
+description: Sending a SMS number received to a API.
+
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.

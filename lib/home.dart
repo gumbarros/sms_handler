@@ -3,7 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:sms_handler/home_controller.dart';
 
-class Home extends StatelessWidget {
+class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
