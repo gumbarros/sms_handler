@@ -9,6 +9,12 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder:(controller)=> Scaffold(
+        appBar: AppBar(
+          elevation: 2.0,
+          actions:[
+            IconButton(onPressed: controller.phoneDialog,icon: Icon(Icons.phone),)
+          ]
+        ),
         body: Container(
           width: Get.width,
           height: Get.height,
